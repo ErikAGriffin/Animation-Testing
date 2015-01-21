@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a9Q-fM-aRV">
-                                <rect key="frame" x="272" y="125" width="57" height="30"/>
+                                <rect key="frame" x="272" y="53" width="57" height="30"/>
                                 <state key="normal" title="Animate">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -28,8 +28,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="a9Q-fM-aRV" firstAttribute="top" secondItem="QJJ-nY-8o6" secondAttribute="bottom" constant="105" id="CEY-jT-8xc"/>
-                            <constraint firstItem="a9Q-fM-aRV" firstAttribute="centerX" secondItem="QZH-p1-tVg" secondAttribute="centerX" id="zXt-KS-fzO"/>
+                            <constraint firstItem="a9Q-fM-aRV" firstAttribute="top" secondItem="QJJ-nY-8o6" secondAttribute="bottom" constant="33" id="3hN-rt-gPq"/>
+                            <constraint firstItem="a9Q-fM-aRV" firstAttribute="centerX" secondItem="QZH-p1-tVg" secondAttribute="centerX" id="L3I-s5-y8y"/>
                         </constraints>
                     </view>
                 </viewController>

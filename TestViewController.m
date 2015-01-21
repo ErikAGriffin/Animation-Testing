@@ -12,6 +12,7 @@
 @interface TestViewController ()
 
 @property (nonatomic) UIView *redBall;
+@property (nonatomic) UIView *blueSquare;
 
 @end
 
@@ -20,12 +21,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    CGFloat boundHeight = self.view.bounds.size.height;
+    CGFloat boundWidth = self.view.bounds.size.width;
 
-    UIView *redBall = [[UIView alloc]initWithFrame:CGRectMake(self.view.bounds.size.width/2 -50, self.view.bounds.size.height/2-50, 100, 100)];
+    UIView *redBall = [[UIView alloc]initWithFrame:CGRectMake(boundWidth/2-50, boundHeight/3, 100, 100)];
     redBall.backgroundColor = [UIColor redColor];
     redBall.layer.cornerRadius = 50.0;
     [self.view addSubview:redBall];
     self.redBall = redBall;
+    NSLog(@"Red y coord %f",self.redBall.frame.origin.y);
+    
+    
+    self.blueSquare = [[UIView alloc]initWithFrame:CGRectMake(boundWidth/2-50, boundHeight*(2.0/3.0)+25.0, 100, 100)];
+    self.blueSquare.backgroundColor = [UIColor blueColor];
+    [self.view addSubview:self.blueSquare];
+    NSLog(@"Blue y coord %f",self.blueSquare.frame.origin.y);
+
 }
 
 - (IBAction)animate:(UIButton *)sender {
@@ -33,9 +44,9 @@
     
     JNWSpringAnimation *scale = [JNWSpringAnimation animationWithKeyPath:@"transform.scale"];
     
-    scale.damping = 250.0;
-    scale.stiffness = 900.0;
-    scale.mass = 30;
+    scale.damping = 6.0;
+    scale.stiffness = 18.0;
+    scale.mass = 0.8;
     
     scale.fromValue = @(1.0);
     scale.toValue = @(2.0);
@@ -44,19 +55,26 @@
     
     self.redBall.transform = CGAffineTransformMakeScale(2.0, 2.0);
     
+    JNWSpringAnimation *rotate = [JNWSpringAnimation animationWithKeyPath:@"transform.rotation"];
+    
+    rotate.damping = 50.0;
+    rotate.stiffness = 125;
+    rotate.mass = 20.0;
+    
+    rotate.fromValue = @(0);
+    rotate.toValue = @(M_PI_2);
+    
+    [self.blueSquare.layer addAnimation:rotate forKey:rotate.keyPath];
+    //[self.blueSquare.layer addAnimation:scale forKey:scale.keyPath];
+    self.blueSquare.transform = CGAffineTransformMakeRotation(M_PI_2);
+    //self.blueSquare.transform = CGAffineTransformMakeScale(2.0, 2.0);
+    
 
-
-    /*
-    [UIView animateWithDuration:3.0 delay:0.0 usingSpringWithDamping:0.5 initialSpringVelocity:0.0 options:0
-                     animations:^{
-                         
-                         self.redBall.transform = CGAffineTransformMakeTranslation(100, 0);
-        
-                     }
-                     completion:NULL];
-     */
     
     /*
+     
+    // iOS 7 native animation.
+
     [UIView animateWithDuration:0.5
                           delay:0.0
                         options:(UIViewAnimationOptionCurveEaseInOut)
