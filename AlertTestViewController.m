@@ -17,6 +17,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    
+    UIView *overlayShadow = [[UIView alloc]initWithFrame:self.view.bounds];
+    overlayShadow.backgroundColor = [UIColor blackColor];
+    overlayShadow.alpha = 0.0;
+    [self.view addSubview:overlayShadow];
+    
+    CGFloat alertSize = 250.0;
+    CGFloat boundHeight = self.view.bounds.size.height;
+    CGFloat boundWidth = self.view.bounds.size.width;
+
+    
+    UIView *alertView = [[UIView alloc]initWithFrame:CGRectMake(boundWidth/2-alertSize/2, boundHeight/2-alertSize/2, alertSize, alertSize)];
+    
 
 
 
