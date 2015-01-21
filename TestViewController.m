@@ -7,6 +7,7 @@
 //
 
 #import "TestViewController.h"
+#import "JNWSpringAnimation.h"
 
 @interface TestViewController ()
 
@@ -29,6 +30,23 @@
 
 - (IBAction)animate:(UIButton *)sender {
     
+    
+    JNWSpringAnimation *scale = [JNWSpringAnimation animationWithKeyPath:@"transform.scale"];
+    
+    scale.damping = 250.0;
+    scale.stiffness = 900.0;
+    scale.mass = 30;
+    
+    scale.fromValue = @(1.0);
+    scale.toValue = @(2.0);
+    
+    [self.redBall.layer addAnimation:scale forKey:scale.keyPath];
+    
+    self.redBall.transform = CGAffineTransformMakeScale(2.0, 2.0);
+    
+
+
+    /*
     [UIView animateWithDuration:3.0 delay:0.0 usingSpringWithDamping:0.5 initialSpringVelocity:0.0 options:0
                      animations:^{
                          
@@ -36,6 +54,7 @@
         
                      }
                      completion:NULL];
+     */
     
     /*
     [UIView animateWithDuration:0.5
