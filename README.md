@@ -4,7 +4,7 @@ Following the book <a href="http://designthencode.com">Motion Design for iOS</a>
 First results using JNWSpringAnimations:<br />
 <i>Apparently my gif maker runs slow</i>
 </p>
-/img src="http://i.imgur.com/6ZCFtvs.gif" />
+<img src="http://i.imgur.com/6ZCFtvs.gif" />
 <br />
 Created test Alert View. <br />
 <img src="http://imgur.com/6EIZjQy.gif" />
