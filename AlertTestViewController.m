@@ -16,6 +16,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Read documentation for layer, and view.transform
+    // UIColors have a property called .CGColor
+    
 
     
     UIView *overlayShadow = [[UIView alloc]initWithFrame:self.view.bounds];
@@ -29,7 +33,18 @@
 
     
     UIView *alertView = [[UIView alloc]initWithFrame:CGRectMake(boundWidth/2-alertSize/2, boundHeight/2-alertSize/2, alertSize, alertSize)];
+    alertView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"alert_box"]];
+    //alertView.alpha = 0.0;
+    alertView.transform = CGAffineTransformMakeScale(1.3, 1.3);
+    alertView.layer.cornerRadius = 30.0;
     
+    alertView.layer.shadowColor = [UIColor blackColor].CGColor;
+    alertView.layer.shadowOffset = CGSizeMake(0.0, 9.0);
+    alertView.layer.shadowOpacity = 0.5;
+    alertView.layer.shadowRadius = 10.0;
+    
+    
+    [self.view addSubview:alertView];
 
 
 
