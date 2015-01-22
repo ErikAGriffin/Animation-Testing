@@ -7,6 +7,7 @@
 //
 
 #import "AlertTestViewController.h"
+#import "JNWSpringAnimation.h"
 
 @interface AlertTestViewController ()
 
@@ -36,10 +37,14 @@
     CGFloat boundWidth = self.view.bounds.size.width;
 
     
+    // I don't believe presetting the transform.scale is necessary, since
+    // it is first shown during animation and then it is the size
+    // the animation depicts, and furthermore we set the static size after.
+    
     self.alertView = [[UIView alloc]initWithFrame:CGRectMake(boundWidth/2-alertSize/2, boundHeight/2-alertSize/2, alertSize, alertSize)];
     self.alertView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"alert_box"]];
     self.alertView.alpha = 0.0;
-    self.alertView.transform = CGAffineTransformMakeScale(1.3, 1.3);
+    //self.alertView.transform = CGAffineTransformMakeScale(1.5, 1.5);
     self.alertView.layer.cornerRadius = 30.0;
     
     self.alertView.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -67,10 +72,22 @@
                          
                          self.shadowOverlay.alpha = 0.4;
                          self.alertView.alpha = 1.0;
-                         self.alertView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+                         //self.alertView.transform = CGAffineTransformMakeScale(1.0, 1.0);
         
                      }
                      completion:NULL];
+    
+    JNWSpringAnimation *scaleDown = [JNWSpringAnimation animationWithKeyPath:@"transform.scale"];
+    
+    scaleDown.damping = 12.0;
+    scaleDown.stiffness = 24.0;
+    scaleDown.mass = 0.9;
+    scaleDown.fromValue = @(1.5);
+    scaleDown.toValue = @(1.0);
+    
+    [self.alertView.layer addAnimation:scaleDown forKey:scaleDown.keyPath];
+    self.alertView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+    
     
 
     
