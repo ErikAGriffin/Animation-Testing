@@ -12,8 +12,11 @@
 @interface AlertTestViewController ()
 
 @property (nonatomic) UIView *shadowOverlay;
-@property (nonatomic) UIView *alertView;
+@property (nonatomic) UIButton *alertView;
 
+
+
+@property (strong, nonatomic) IBOutlet UIButton *alertButton;
 
 @end
 
@@ -25,7 +28,6 @@
     // Read documentation for layer, and view.transform
     // UIColors have a property called .CGColor
     
-
     
     self.shadowOverlay = [[UIView alloc]initWithFrame:self.view.bounds];
     self.shadowOverlay.backgroundColor = [UIColor blackColor];
@@ -41,7 +43,7 @@
     // it is first shown during animation and then it is the size
     // the animation depicts, and furthermore we set the static size after.
     
-    self.alertView = [[UIView alloc]initWithFrame:CGRectMake(boundWidth/2-alertSize/2, boundHeight/2-alertSize/2, alertSize, alertSize)];
+    self.alertView = [[UIButton alloc]initWithFrame:CGRectMake(boundWidth/2-alertSize/2, boundHeight/2-alertSize/2, alertSize, alertSize)];
     self.alertView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"alert_box"]];
     self.alertView.alpha = 0.0;
     //self.alertView.transform = CGAffineTransformMakeScale(1.5, 1.5);
@@ -54,7 +56,9 @@
     
     
     [self.view addSubview:self.alertView];
-
+    
+    [self.alertView addTarget:self action:@selector(hideAlert) forControlEvents:UIControlEventTouchUpInside];
+    
 
 
 }
@@ -93,6 +97,28 @@
     
 }
 
+-(IBAction)hideAlert {
+    
+    [UIView animateWithDuration:0.2 delay:0 options:0
+                     animations:^{
+                     
+                         self.alertView.alpha = 0.0;
+                         self.shadowOverlay.alpha = 0.0;
+                         
+                     }
+                     completion:NULL];
+    
+    JNWSpringAnimation *scaleDown = [JNWSpringAnimation animationWithKeyPath:@"transform.scale"];
+    
+    scaleDown.damping = 12.0;
+    scaleDown.stiffness = 50.0;
+    scaleDown.mass = 0.9;
+    scaleDown.fromValue = @(1.0);
+    scaleDown.toValue = @(0.0);
+    
+    [self.alertView.layer addAnimation:scaleDown forKey:scaleDown.keyPath];
+    
+}
 
 
 - (void)didReceiveMemoryWarning {

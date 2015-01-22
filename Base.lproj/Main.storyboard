@@ -37,6 +37,9 @@
                             <constraint firstItem="Tii-2z-6uO" firstAttribute="top" secondItem="0ci-1S-CJg" secondAttribute="bottom" constant="8" symbolic="YES" id="yVd-Ft-a5U"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="alertButton" destination="Tii-2z-6uO" id="IHl-bs-GDs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FU6-Kt-H70" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
